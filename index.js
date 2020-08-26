@@ -14,15 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //"武汉核酸普查结果公布"
 var list = ["gmail.com", "yahoo.com", "hotmail.com"];
 var list_no = ["outlook.com", "vtr.cl", "emol.com"];
-var letras = "abcdefghijklmnopqrstuvwxyz0123456789";
 
-function randomString(x){
-    var a = "";
-    for(var i=0, ilen=x; i<ilen; i++){
-        a += letras[randomInteger(0, letras.length)];
-    }
-    return a;
-}
+
 function randomMail(){
     var d = randomInteger(0, list.length);
     var n = randomInteger(2, 10);
@@ -30,8 +23,6 @@ function randomMail(){
 }
 
 var mails = {};
-
-
 var data = [{}];
 
 var helpers = require('./helpers');
@@ -44,7 +35,7 @@ app.listen(helpers.getPort(), () => {
 app.get('/', urlencodedParser, function(req, res){
 
     res.setHeader('Content-Type', 'text/plain');
-    res.end("("+helpers.randomInteger(3, 5)+")");
+    res.end("("+helpers.randomString(5)+")");
     /*
     for(var i=0, ilen=100; i<ilen; i++){
         add_mail(randomMail(), i);
