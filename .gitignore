@@ -4,6 +4,7 @@ ehthumbs.db
 ehthumbs_vista.db
 
 config.json
+init.log
 node_modules/
 
 # Folder config file
