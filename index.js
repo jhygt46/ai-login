@@ -44,7 +44,7 @@ app.listen(helpers.getPort(), () => {
 app.get('/', urlencodedParser, function(req, res){
 
     res.setHeader('Content-Type', 'text/plain');
-    res.end(helpers.randomInteger(3, 5));
+    res.end("("+helpers.randomInteger(3, 5)+")");
     /*
     for(var i=0, ilen=100; i<ilen; i++){
         add_mail(randomMail(), i);
