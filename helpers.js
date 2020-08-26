@@ -9,7 +9,7 @@ module.exports = {
         var letras = "abcdefghijklmnopqrstuvwxyz0123456789";
         var a = "";
         for(var i=0, ilen=x; i<ilen; i++){
-            a += letras[randomInteger(0, letras.length)];
+            a += letras[this.randomInteger(0, letras.length)];
         }
         return a;
     }
