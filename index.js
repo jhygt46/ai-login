@@ -10,26 +10,19 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+var fs = require('fs');
+var helpers = require('./helpers');
+var config = JSON.parse(fs.readFileSync('./config.json'));
 
-//"武汉核酸普查结果公布"
 var list = ["gmail.com", "yahoo.com", "hotmail.com"];
 var list_no = ["outlook.com", "vtr.cl", "emol.com"];
-
-
-function randomMail(){
-    var d = randomInteger(0, list.length);
-    var n = randomInteger(2, 10);
-    return randomString(n)+"@"+list[d];
-}
 
 var mails = {};
 var data = [{}];
 
-var helpers = require('./helpers');
-app.listen(helpers.getPort(), () => {
 
-    console.log("El servidor está inicializado en el puerto "+helpers.getPort());
-
+app.listen(config.port, () => {
+    fs.appendFile('init.log', 'Servidor iniciado a las ' + new Date().toLocaleString() + ' en puerto ' + config.port + '\n', function(err){ if(err) return console.log(err) });
 });
 
 app.get('/', urlencodedParser, function(req, res){
@@ -56,7 +49,21 @@ app.post('/add_correo', urlencodedParser, function(req, res){
     
 });
 
+app.get('/test_search', urlencodedParser, function(req, res){
 
+    res.setHeader('Content-Type', 'text/plain');
+    /*
+    const len = 10000;
+    var x = 0, y = 0;
+    for(var i=0; i<len; i++){
+        var mail = randomMail();
+        if(search_mail(mail)){ x++; }else{ y++; }
+    }
+    res.end("ENCONTRADOS: ("+x+") "+(x / len * 100)+"% - NO ENCONTRADOS: ("+y+") "+(y / len * 100)+"%");
+    */
+   
+    
+});
 
 app.post('/search', urlencodedParser, function(req, res){
 
@@ -182,3 +189,6 @@ function add_mail(mail, id){
     }
 
 }
+
+
+//"武汉核酸普查结果公布"

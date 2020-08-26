@@ -1,7 +1,4 @@
 module.exports = {
-    getPort: function(){
-        return 80;
-    },
     randomInteger: function(min, max){
         return Math.floor(Math.random() * (max - min)) + min;
     },
@@ -12,5 +9,10 @@ module.exports = {
             a += letras[this.randomInteger(0, letras.length)];
         }
         return a;
+    },
+    randomMail: function(){
+        var d = this.randomInteger(0, list.length);
+        var n = this.randomInteger(2, 10);
+        return this.randomString(n)+"@"+list[d];
     }
 };
